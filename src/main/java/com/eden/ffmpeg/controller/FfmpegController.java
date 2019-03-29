@@ -5,6 +5,7 @@ import com.eden.ffmpeg.entity.ResponseMsg;
 import com.eden.ffmpeg.entity.Result;
 import com.eden.ffmpeg.service.FFmpegService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
+
+import static java.util.UUID.randomUUID;
 
 /**
  * @created by eden
@@ -65,11 +67,14 @@ public class FfmpegController {
     private Result executePath(RequestParam param) {
         Result result = new Result();
         result.setSourcePath(param.getRtspSourcePath());
-        String rtmpPath = RequestParam.resolveRTMPPath(param.getTargetFileNameSuffix());
+        String uuid = randomUUID().toString();
+        String suffix = StringUtils.isBlank(param.getTargetFileNameSuffix())
+                ? uuid : param.getTargetFileNameSuffix();
+        String rtmpPath = RequestParam.resolveRTMPPath(suffix);
         //异步执行
         fFmpegService.execute(param, rtmpPath);
         result.setTargetPath(RequestParam.RTMP_PREFIX);
-        result.setTargetSuffix(UUID.randomUUID().toString());
+        result.setTargetSuffix(suffix);
         return result;
     }
 

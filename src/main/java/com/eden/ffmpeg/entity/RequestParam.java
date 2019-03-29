@@ -1,7 +1,6 @@
 package com.eden.ffmpeg.entity;
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 
