@@ -8,3 +8,16 @@ spring:
     show-sql: true
 server:
   port: 8081
+
+
+video:
+  ffmpeg:
+    path: D:/video/ffmpeg/bin/ffmpeg
+  ffprobe:
+    path: D:/video/ffmpeg/bin/ffprobe
+  rtmp:
+    prefix: rtmp://localhost:1935/live/
+
+
+
+

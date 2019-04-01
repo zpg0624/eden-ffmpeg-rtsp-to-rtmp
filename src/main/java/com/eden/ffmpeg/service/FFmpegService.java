@@ -11,6 +11,7 @@ import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 import net.bramp.ffmpeg.job.FFmpegJob;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Async;
@@ -29,14 +30,27 @@ import java.util.stream.Collectors;
 @Slf4j
 public class FFmpegService {
 
+    @Value("${video.ffmpeg.path}")
+    private String ffmpegPath;
+
+    @Value("${video.ffprobe.path}")
+    private String ffprobePath;
+
+    @Value("${video.rtmp.prefix}")
+    private String rtmpPrefix;
+
+    public String getRtmpPrefix() {
+        return rtmpPrefix;
+    }
+
     @Autowired
     SourcePathInfoRepository repository;
 
     @Async
     public void execute(RequestParam param, String rtmpPath) {
         try {
-            FFmpeg ffmpeg = new FFmpeg(param.getFfmpegPath());
-            FFprobe ffprobe = new FFprobe(param.getFfprobePath());
+            FFmpeg ffmpeg = new FFmpeg(ffmpegPath);
+            FFprobe ffprobe = new FFprobe(ffprobePath);
             FFmpegBuilder builder = new FFmpegBuilder()
                     .setInput(param.getRtspSourcePath())
                     .addOutput(rtmpPath)
