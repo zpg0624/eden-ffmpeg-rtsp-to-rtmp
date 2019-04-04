@@ -44,7 +44,7 @@
             var params = {};
             params.quality = "high";
             params.bgcolor = "#ffffff";
-            params.allowscriptaccess = "always";
+            params.allowscriptaccess = "sameDomain";
             params.allowfullscreen = "true";
             var attributes = {};
             attributes.id = "BXPlayer";
@@ -52,7 +52,7 @@
             attributes.align = "middle";
             params.wmode="transparent";
             swfobject.embedSWF(
-                "BXPlayer.swf", "flashContent",
+                "BXPlayer.swf", "flashContent", 
                 "100%", "100%", 
                 swfVersionStr, xiSwfUrlStr, 
                 flashvars, params, attributes);

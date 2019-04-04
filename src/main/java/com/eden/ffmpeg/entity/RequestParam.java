@@ -20,6 +20,13 @@ public class RequestParam implements Serializable {
     private String rtspSourcePath;
 
     /**
+     *发布服务ip
+     */
+    @NotNull
+    private String ip;
+
+
+    /**
      * 转换后地址后缀
      */
     private String targetFileNameSuffix;

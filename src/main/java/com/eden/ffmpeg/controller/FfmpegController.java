@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import sun.misc.BASE64Encoder;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,12 +35,13 @@ public class FfmpegController {
      * @param param
      * @return
      */
-    @PostMapping("rtsps")
-    public ResponseMsg getRtsps(@RequestBody RequestParam param) {
-        log.info("request rtsp utls param is {}", param.toString());
-        List<Result> rtsps = fFmpegService.getRtspUrls(param.getCount());
-        return ResponseMsg.success(rtsps);
-    }
+//    @PostMapping("rtsps")
+//    public ResponseMsg getRtsps(@RequestBody RequestParam param) {
+//        log.info("request rtsp utls param is {}", param.toString());
+//        List<Result> rtsps = fFmpegService.getRtspUrls(param.getCount());
+//        return ResponseMsg.success(rtsps);
+//    }
+//
 
 
     /**
@@ -58,6 +59,7 @@ public class FfmpegController {
                         .orElseThrow(IllegalArgumentException::new)
                 )
                 .collect(Collectors.toList());
+        log.info("results ffmpeg is {}", results);
         return ResponseMsg.success(results);
     }
 
@@ -65,13 +67,14 @@ public class FfmpegController {
     private Result executePath(RequestParam param) {
         Result result = new Result();
         result.setSourcePath(param.getRtspSourcePath());
-        BASE64Encoder encoder = new BASE64Encoder();
-        String suffix = encoder.encode(param.getRtspSourcePath().getBytes());
-        String rtmpPath = RequestParam.resolveRTMPPath(suffix, fFmpegService.getRtmpPrefix());
+        String suffix = Base64.getEncoder().encodeToString(param.getRtspSourcePath().getBytes());
+        String playUrl = fFmpegService.getRtmpPrefix().replace("ip", param.getIp());
+        String rtmpPath = RequestParam.resolveRTMPPath(suffix, playUrl);
         //异步执行
         fFmpegService.execute(param, rtmpPath);
-        result.setTargetPath(fFmpegService.getRtmpPrefix());
+        result.setTargetPath(playUrl);
         result.setTargetSuffix(suffix);
         return result;
     }
+
 }

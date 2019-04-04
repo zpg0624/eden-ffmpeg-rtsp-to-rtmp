@@ -1,25 +1,15 @@
 package com.eden.ffmpeg.service;
 
-import com.eden.ffmpeg.dao.SourcePathInfoRepository;
 import com.eden.ffmpeg.entity.RequestParam;
-import com.eden.ffmpeg.entity.Result;
-import com.eden.ffmpeg.entity.SourcePathInfo;
 import lombok.extern.slf4j.Slf4j;
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
 import net.bramp.ffmpeg.FFprobe;
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 import net.bramp.ffmpeg.job.FFmpegJob;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * @created by eden
@@ -43,8 +33,8 @@ public class FFmpegService {
         return rtmpPrefix;
     }
 
-    @Autowired
-    SourcePathInfoRepository repository;
+//    @Autowired
+//    SourcePathInfoRepository repository;
 
     @Async
     public void execute(RequestParam param, String rtmpPath) {
@@ -70,11 +60,11 @@ public class FFmpegService {
     }
 
 
-    public List<Result> getRtspUrls(Integer count) {
-        Page<SourcePathInfo> pathInfos = repository.findAll(PageRequest.of(0, count));
-        List<Result> results = pathInfos.get()
-                .map(rstp -> Result.of(rstp.getPath(), UUID.randomUUID().toString()))
-                .collect(Collectors.toList());
-        return results;
-    }
+//    public List<Result> getRtspUrls(Integer count) {
+//        Page<SourcePathInfo> pathInfos = repository.findAll(PageRequest.of(0, count));
+//        List<Result> results = pathInfos.get()
+//                .map(rstp -> Result.of(rstp.getPath(), UUID.randomUUID().toString()))
+//                .collect(Collectors.toList());
+//        return results;
+//    }
 }
