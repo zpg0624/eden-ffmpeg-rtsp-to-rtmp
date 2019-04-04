@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link  rel="stylesheet" type="text/css" href="http://192.168.2.191:8081/swf.css" />  
+   <!--  <link  rel="stylesheet" type="text/css" href="http://192.168.2.191:8081/swf.css" /> -->
 
     <script type="text/javascript" src="http://192.168.2.191:8081/swfobject.js"></script>
     <script type="text/javascript" src="http://192.168.2.191:8081/swfextend.js"></script>

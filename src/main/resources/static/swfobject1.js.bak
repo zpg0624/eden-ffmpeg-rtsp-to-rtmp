@@ -841,6 +841,7 @@ function playRTMPVideoBySingleSourceUrl(num, sourceUrl,ip) {
 
  
   function loadWindows(id){
+	  alert(id)
 	flashId = id;
 	 document.body.style.height = '100%';    
 	 document.getElementsByTagName("html")[0] .style.height = '100%';   

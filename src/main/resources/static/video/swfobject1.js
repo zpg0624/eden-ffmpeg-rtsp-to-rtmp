@@ -837,35 +837,22 @@ function playRTMPVideoBySingleSourceUrl(num, sourceUrl,ip) {
 	flash.playRTMPVideoBySingleSourceUrl(num, sourceUrl,ip);
 }
 
- var flashId = "flashContent";
-
- 
-  function loadWindows(id){
-	flashId = id;
-	 document.body.style.height = '100%';    
-	 document.getElementsByTagName("html")[0] .style.height = '100%';   
-	   var div = document.createElement('div')
-        div.setAttribute("id", flashId);
-        document.body.appendChild(div)
-		var swfVersionStr = "11.1.0";
-		var xiSwfUrlStr = "${expressInstallSwf}";
-		var flashvars = {};
-		var params = {};
-		params.quality = "high";
-		params.bgcolor = "#ffffff";
-		params.allowscriptaccess = "always";
-		params.allowfullscreen = "true";
-		var attributes = {};
-		attributes.id = "BXPlayer";
-		attributes.name = "BXPlayer";
-		attributes.align = "middle";
-		params.wmode="transparent";
-		swfobject.embedSWF(
-			"BXPlayer.swf", flashId,
-			"100%", "100%",
-			swfVersionStr, xiSwfUrlStr,
-			flashvars, params, attributes);
-		swfobject.createCSS("#"+flashId, "display:block;text-align:left;");
-  }
-
-    
+var swfVersionStr = "11.1.0";
+var xiSwfUrlStr = "${expressInstallSwf}";
+var flashvars = {};
+var params = {};
+params.quality = "high";
+params.bgcolor = "#ffffff";
+params.allowscriptaccess = "always";
+params.allowfullscreen = "true";
+var attributes = {};
+attributes.id = "BXPlayer";
+attributes.name = "BXPlayer";
+attributes.align = "middle";
+params.wmode="transparent";
+swfobject.embedSWF(
+	"BXPlayer.swf", "flashContent",
+	"100%", "100%",
+	swfVersionStr, xiSwfUrlStr,
+	flashvars, params, attributes);
+swfobject.createCSS("#flashContent", "display:block;text-align:left;");

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="bundle.js"></script>
+    <embed src="http://192.168.2.191:8081/BXPlayer.swf" />
+    <!-- <embed src="/ffmpeg/BXPlayer.swf"></embed> -->
+    <!-- <script>
+        // var webpackNumbers = require('../dist/bundle.js');
+        // var webpackNumbers = require('../dist/bundle.js');
+        // import * as webpackNumbers from '../dist/bundle.js';
+        // webpackNumbers.wordToNum()
+        // webpackNumbers.jia()
+        window.webpackNumbers.wordToNum('Five')
+    </script> -->
+</head>
+<body>
+        
+    <button onclick="window.bundle.jia();">调用方法</button>
+    <button onclick="window.bundle.changeScreenRemoteCall(9)">四屏</button>
+    <button onclick="window.bundle.playRTMPVideoBySourceUrlList([{index:0,value:'rtsp://184.72.239.149/vod/mp4://BigBuckBunny_175k.mov','192.168.2.191'}])">播放视频</button>
+    <button onclick="window.bundle.playRTMPVideoBySingleSourceUrl(2,'rtsp://184.72.239.149/vod/mp4://BigBuckBunny_175k.mov')">单个视频播放</button>
+    <div id="flashContent" ></div>
+        <a href="http://www.adobe.com/go/getflashplayer">
+          <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />
+        </a>
+</body>
+</html>
+<!-- <script type="text/javascript"  >
+  
+    swfobject.embedSWF(
+"http://192.168.2.191:8081/BXPlayer.swf", "flashContent",
+"100%", "100%",
+swfVersionStr, xiSwfUrlStr,
+flashvars, params, attributes);
+swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+</script> -->
