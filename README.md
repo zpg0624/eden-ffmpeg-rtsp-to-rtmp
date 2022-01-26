@@ -1,1 +1,1 @@
-flex、ffmpeg 、spring boot 整合rtsp协议转码rtmp协议视频实时播放
+spring boot 整合flex和ffmpeg将rtsp协议转码rtmp协议视频实时播放功能
